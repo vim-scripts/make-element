@@ -6,7 +6,7 @@
 "
 "    when inserting type:
 "
-"    word,,,
+"    para,,,
 "
 "    This gets immediately translated to
 "    <para>
@@ -14,21 +14,19 @@
 "    If word is not alone on a line the xml element is kept on one line.
 "	<para><emphasis>hello</emphasis></para>
 "
-"	Does not work with xml elements with just one character (such as p in
-"	html) 
-"
+"	version 1.1 works with xml elements of one character. 
+
 " Bart van Deenen , www.vandeenensupport.com
 function! Make_element()
-	if match(getline('.'),'^\s*'.@".'\s*$') == -1
+	if match(getline('.'),'^\s*>\s*$') == -1
 		"the deleted word was not alone on the line
-		 let @w = "i<ea></pa>F<i"
+		 let @w = "i<pla</pa>F<i"
 	else
 		"the deleted word was on it's own on the line
-		 let @w = "i<ea></pa>kA"
+		 let @w = "i<po</pa>kA"
 	endif
 endfunction
 
 "include colon(58) for namespaces in xsl for instance
 setlocal iskeyword=@,48-57,_,192-255,58
-imap <buffer>  ,,, <Esc>bye:call Make_element()<enter>@w
-
+inoremap <buffer>  ,,, ><Esc>db:call Make_element()<enter>@w
