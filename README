@@ -1,0 +1,20 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=632
+
+In insert mode, typing anyword,,, gets translated to an xml element named 'anyword'
+
+Example 1:
+      anyword,,,<cr><tab>xsl:if,,, ==>
+      <anyword>
+            <xsl:if>
+            </xsl:if>
+      </anyword>
+with the cursor after the element open tag. 
+
+If anyword is not on a line by itself, no newline is added.
+
+Example 2:
+This is a bold,,, statement ==> This is a <bold>statement</bold>
+
+Use it all the time myself, in docbook and with some custom dtd's.
+
+See vimtip #465
